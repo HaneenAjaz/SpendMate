@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+        <form method="POST">
+            <input type="text" name="description" placeholder="Description" required>
+            <input type="number" name="amount" step="0.01" placeholder="Amount" required>
+            <button type="submit">Add Expense</button>
+        </form>
+
+        <h2>Total: ₹{{ total }}</h2>
+
+        <ul>
+            {% for expense in expenses %}
+            <li>
+                {{ expense[1] }} - ₹{{ expense[2] }}
+                <a href="/delete/{{ expense[0] }}">❌</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
